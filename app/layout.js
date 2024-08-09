@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "./_components/navbar_design/navBar";
+import { CartProvider } from "./selectitemCont";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +13,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <CartProvider>
+      <body className={`${inter.className} space-y-6`}>
+      
+      <nav  className="sticky top-0">
+        <Navbar/>
+      </nav>
+        {children}
+        
+      </body>
+      </CartProvider>
     </html>
   );
 }
