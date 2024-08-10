@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -7,10 +8,11 @@ import { useState } from "react"
 export default function SideBar({isopen ,setIsopen}){
     
     const links = [
+        {nom :"All Products" , href:"/"},
         {nom : "Men" , href:"/men"},
         {nom :"Women" , href:"/women"},
         {nom :"Kids" , href:"/kids"},
-        {nom :"All Products" , href:"/"}
+        
     ]
     const handleClick=()=>{
        setIsopen(false)
@@ -18,7 +20,7 @@ export default function SideBar({isopen ,setIsopen}){
     }
     return(
         <>
-           <div className={`${isopen ? "translate-x-0" : "translate-x-full"} h-full  bg-white px-5 fixed top-0 right-0 w-1/2 flex z-50 flex-col gap-20 transition-all ease-in-out duration-300 sidebar justify-between py-5`}>
+           <div className={`${isopen ? "translate-x-0" : "translate-x-full"} h-full  bg-white px-5 fixed top-0 right-0 w-1/2 flex z-50 flex-col gap-20 transition-all ease-in-out duration-300 sidebar  py-5 justify-between`}>
                 <div className="flex justify-end">
                         <button className="rounded-full w-fit p-2 hover:bg-gray hover:transition-all hover:ease-in-out hover:duration-500 " onClick={()=>handleClick()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black" className="size-8">
@@ -41,7 +43,7 @@ export default function SideBar({isopen ,setIsopen}){
                         })}
                     </ul>
                 
-                    <button className="px-2 py-2 bg-yellow-400 rounded-2xl align-bottom">Check out your bag</button>
+                <Image src="https://sweezy-cursors.com/wp-content/uploads/cursor/auto-draft/nike-air-max-97-platinum-navy-custom-cursor.png" alt="side bar" width={300} height={300} className="object-cover"/>
                 
            </div>
         </>

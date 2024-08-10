@@ -3,10 +3,11 @@ import Link from "next/link"
 {/*for md screen*/}
 export default function Links(){
     const links = [
+        {nom :"All Products" , href:"/"},
         {nom : "Men" , href:"/men"},
         {nom :"Women" , href:"/women"},
         {nom :"Kids" , href:"/kids"},
-        {nom :"All Products" , href:"/"}
+      
     ]
     return(
         <>

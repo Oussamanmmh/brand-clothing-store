@@ -26,14 +26,16 @@ export default async function TopProducts (){
 
     return(
         <>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 ">
                 <h1 className="text-3xl font-bold"><span className="font-thin">Top </span>Products</h1>
                
-                <div className="flex gap-2 md:gap-10 overflow-x-scroll py-3">
+                <div className="flex gap-2 md:gap-10 overflow-x-scroll py-3 items-center">
                         {
                             products.map((product, index)=>{
                                 
-                                return <CardProduct key={index} product={product} />
+                                return  <div key={index} className="min-w-[20%] md:min-w-[20%] lg:min-w-[10%]">
+                                         <CardProduct product={product} />
+                                 </div>
                             })
                         }
                 </div>

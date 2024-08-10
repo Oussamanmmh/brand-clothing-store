@@ -68,6 +68,9 @@ export default  function Brands(){
         <>
              <section className="space-y-2 brands">
                     <h2 className=" font-bold text-center text-lg md:text-2xl">SHOP BY THE WORLD CLASS BRAND</h2>
+                    <div className="flex justify-center items-center -rotate-45">
+                         <Image className="" src={"https://sweezy-cursors.com/wp-content/uploads/cursor/nike-air-force-1-animated/nike-air-force-1-animated-custom-cursor.gif"} width={100} height={100} alt="snerker" />
+                   </div>
                     <div className="flex justify-between text-sm md:text-lg">
                         <p>Brands</p>
                         <p>Scroll for more </p>

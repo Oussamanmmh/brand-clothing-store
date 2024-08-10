@@ -73,7 +73,7 @@ export default function DeatailsProduct({ params }) {
                     }`,
                     { productId: params.productId },{
                         next:{
-                            revalidate:0
+                            revalidate:3600
                         }
                     }
                 );
@@ -129,14 +129,14 @@ export default function DeatailsProduct({ params }) {
                 <section className="flex flex-col md:flex-row md:items-center items-start md:gap-20 md:h-screen">
                    <ProductImage images={product.image}/>
                     <div className="flex w-full flex-col md:gap-4 gap-3 md:h-full md:w-1/2 justify-center">
-                        <div>
+                        <div >
                             <p className="text-lg  font-oswald font-bold uppercase">{product.brand}/{product.type_product}</p>
                             <h1 className="font-bold text-xl uppercase">{product.name}</h1>
-                        </div>
+                        </div >
                             <h2 style={{color:"#c5efcb"}} className="text-3xl font-bold font-serif text-gradient">{product.price},00$</h2>
                         <div>
                             <h1 className="font-semibold text-xl">Description</h1>
-                            <p className="text-xs text-amber-400 font-josefin">{product.description}</p>
+                            <p className="text-xs  font-josefin">{product.description}</p>
                         </div>
                      
                        <Colors colors={product.colors} setColor={setColor}/>
@@ -144,7 +144,7 @@ export default function DeatailsProduct({ params }) {
                     <Quantity setQuantity={setQuantity}/>
                        
                         <div className="flex justify-between  w-full">
-                            <button className={`${addedToCart? "bg-green text-white" : "bg-yellow-400"} py-2 px-4 text-gray rounded-2xl flex items-center gap-2`} onClick={()=>handleAddToCart()}>
+                            <button className={` bg-primary  font-semibold py-2 px-4 text-gray rounded-2xl flex items-center gap-2`} onClick={()=>handleAddToCart()}>
                                    <span>   {addedToCart ? "Added to cart " : `Add to cart `}</span> 
                                   {!addedToCart && ( <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />

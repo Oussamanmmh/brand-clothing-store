@@ -2,10 +2,12 @@
 import WilayaSelector from "./selectwilaya";
 import { useForm } from "react-hook-form";
 
-export default function BuyNowAlert({alert , setAlert}) {
+export default function BuyNowAlert({alert , setAlert ,products ,totalAmount }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const submit = (data) => {
+    const submit = async(data) => {
+
         console.log(data)   
+        reset()
     }
   
     return (

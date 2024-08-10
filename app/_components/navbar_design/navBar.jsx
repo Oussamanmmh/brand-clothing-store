@@ -36,7 +36,7 @@ export default function Navbar() {
         <>
             <nav
                 className={`flex items-center justify-between z-50 py-4 px-2 transition-all duration-700 ease-in-out ${
-                    hasShadow ? "shadow-white shadow-2xl" : "bg-gray"
+                    hasShadow ? "bg-transparent" : "bg-gray"
                 }`}
             >
                 <div className="font-josefin text-2xl">

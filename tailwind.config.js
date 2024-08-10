@@ -20,8 +20,9 @@ module.exports = {
         'red':"#E50914",
         'gray':"#3c433b",
         'green':'#06D001',
-         'scrollbar-1':"#b8d2b3",
-         'scrollbar-2':"#a9c5a0"
+         'primary':"#c5efcb",
+         'secondery':"#1f241f"
+
       },
       fontFamily: {
         oswald: ['Oswald', 'sans-serif'],
