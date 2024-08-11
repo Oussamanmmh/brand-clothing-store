@@ -1,7 +1,6 @@
 "use client";
-import { useState } from 'react';
 
-export default function WilayaSelector({ register ,errors}) {
+export default function WilayaSelector({ register ,errors ,watch}) {
     const wilayas = [
         "Adrar", "Chlef", "Laghouat", "Oum El Bouaghi", "Batna", "Béjaïa", "Biskra",
         "Béchar", "Blida", "Bouira", "Tamanrasset", "Tébessa", "Tlemcen", "Tiaret",
@@ -12,19 +11,14 @@ export default function WilayaSelector({ register ,errors}) {
         "Tipaza", "Mila", "Aïn Defla", "Naâma", "Aïn Témouchent", "Ghardaïa", "Relizane"
       ];
       
-  const [selectedWilaya, setSelectedWilaya] = useState('');
-
-  const handleChange = (event) => {
-    setSelectedWilaya(event.target.value);
-  };
-
+  
+ const selectedWilaya = watch("wilaya");
   return (
     <div className='text-black w-full relative'>
       <select 
       className='bg-gray px-4 py-2 rounded-lg w-full border border-white text-white outline-none'
         id="wilaya-select"
         value={selectedWilaya}
-        onChange={handleChange}
         {...register("wilaya",{required:{value:true , message :"Wilaya is required"}})}
       >
         <option value="">🗺️ Wilaya </option>

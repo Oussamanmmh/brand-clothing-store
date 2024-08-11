@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Suspense} from "react";
+import { useState, useEffect} from "react";
 import { groq } from "next-sanity";
 import client from "@/app/sanity";
 import Quantity from "./components/quantity";
@@ -10,7 +10,7 @@ import BuyNowAlert from "./components/buynow";
 import { useCart } from "@/app/selectitemCont";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import SpinnerLoading from "@/app/_components/spinnerLoading";
+import ProductsSection from "./productsSection/productSection";
 
 export default function DeatailsProduct({ params }) {
     const [product, setProduct] = useState({});
@@ -22,7 +22,6 @@ export default function DeatailsProduct({ params }) {
     const [color, setColor] = useState("");
     const [alert , setAlert ] = useState(false);
     const {setTotal , total } = useCart();
-    const router = useRouter()
     const handleAddToCart = () => {
         setAddedToCart(!addedToCart);
        if(addedToCart){
@@ -107,9 +106,7 @@ export default function DeatailsProduct({ params }) {
         fetchProduct();
     }, [params.productId]);
 
-    if(loading){
-        return <SpinnerLoading/>
-    }
+    
    
  if(!product){
     return <div className="w-full  h-screen flex flex-col justify-center items-center gap-20">
@@ -122,10 +119,10 @@ export default function DeatailsProduct({ params }) {
 
     return (
         <>
-            {
-                product &&(
-                    <section>
-                
+            
+               
+            <section className="flex flex-col gap-10">
+             { product &&(
                 <section className="flex flex-col md:flex-row md:items-center items-start md:gap-20 md:h-screen">
                    <ProductImage images={product.image}/>
                     <div className="flex w-full flex-col md:gap-4 gap-3 md:h-full md:w-1/2 justify-center">
@@ -141,7 +138,7 @@ export default function DeatailsProduct({ params }) {
                      
                        <Colors colors={product.colors} setColor={setColor}/>
                        <Sizes sizes={product.sizes} setSize={setSize} />
-                    <Quantity setQuantity={setQuantity}/>
+                        <Quantity setQuantity={setQuantity}/>
                        
                         <div className="flex justify-between  w-full">
                             <button className={` bg-primary  font-semibold py-2 px-4 text-gray rounded-2xl flex items-center gap-2`} onClick={()=>handleAddToCart()}>
@@ -157,15 +154,13 @@ export default function DeatailsProduct({ params }) {
                         </div>
                        
                     </div>
-                    <BuyNowAlert alert={alert} setAlert={setAlert}/>
-                </section>
-                <section className="">
-                    <h1 className="font-josefin text-4xl font-bold">You might like this</h1>
-                   
-                </section>
+                    <BuyNowAlert alert={alert} setAlert={setAlert} products={[{productId:{ _ref: product._id} , quantity , color: color , size }]}  totalAmount={product.price*quantity } />
+                </section>   
+                  )
+                 }
+               <ProductsSection/>
             </section>
-                )
-            }
+           
         </>
     );
 }

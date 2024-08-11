@@ -1,13 +1,33 @@
 "use client"
+import axios from "axios";
 import WilayaSelector from "./selectwilaya";
 import { useForm } from "react-hook-form";
+import SmallAoder from "@/app/_components/smallaoder";
+import { useState } from "react";
+import SpinnerLoading from "@/app/_components/spinnerLoading";
 
 export default function BuyNowAlert({alert , setAlert ,products ,totalAmount }) {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch,reset, formState: { errors } } = useForm();
+    const [loading, setLoading] = useState(false);
     const submit = async(data) => {
+        setLoading(true)
 
-        console.log(data)   
-        reset()
+        try{
+             const response = await axios.post('/api/orders/',{...data , products , totalAmount} )
+             console.log(response)
+
+            reset()
+        }
+        catch(error){
+            console.log("there is an error")
+            console.log(error)
+        }
+        finally{
+
+                setLoading(false)
+                setAlert(false)
+        }
+       
     }
   
     return (
@@ -39,13 +59,13 @@ export default function BuyNowAlert({alert , setAlert ,products ,totalAmount }) 
                         {errors.phone && (<p className="text-red absolute bottom-0 inset-11 left-2 text-xs">{errors.phone.message}</p>)}
                     </div>
                 </div>
-                <WilayaSelector register={register} errors={errors} />
+                <WilayaSelector register={register} errors={errors} watch={watch} />
                 <div className="relative w-full">
                     <input placeholder="🏠 address" type="text" {...register("address",{required:{value:true , message :"Address is required"}})} />
                     {errors.address && (<p className="text-red absolute bottom-0 inset-11 left-2 text-xs">{errors.address.message}</p>)}
                 </div>
                 <button className="bg-blue py-2 px-4 rounded-xl" type="submit">
-                    Buy now
+                   {loading ? <SpinnerLoading screen={false}/> : " Buy now"}
                 </button>
             </form>
         </section>

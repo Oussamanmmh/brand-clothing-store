@@ -20,7 +20,7 @@ export default function SideBar({isopen ,setIsopen}){
     }
     return(
         <>
-           <div className={`${isopen ? "translate-x-0" : "translate-x-full"} h-full  bg-white px-5 fixed top-0 right-0 w-1/2 flex z-50 flex-col gap-20 transition-all ease-in-out duration-300 sidebar  py-5 justify-between`}>
+           <div className={`${isopen ? "translate-x-0" : "translate-x-full"} h-full  bg-white px-5 fixed top-0 right-0 w-1/2 flex z-50 flex-col gap-20 transition-all ease-in-out duration-300 sidebar  py-5 justify-between md:hidden`}>
                 <div className="flex justify-end">
                         <button className="rounded-full w-fit p-2 hover:bg-gray hover:transition-all hover:ease-in-out hover:duration-500 " onClick={()=>handleClick()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black" className="size-8">
